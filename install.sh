@@ -9,6 +9,8 @@ git clone https://aur.archlinux.org/paru.git
 cd paru/
 makepkg -si
 
+cd ~
+
 paru -Syu zen-browser-bin
 
 mkdir -p ../../.config
