@@ -21,3 +21,5 @@ ln -s ~/laptop-dotfiles~/quickshell ~/.config
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 ln -sf ~/laptop-dotfiles/.zshrc ~
+source /.zshrc
+chsh -s zsh $(which zsh)
