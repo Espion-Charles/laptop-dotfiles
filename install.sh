@@ -4,7 +4,7 @@ sudo pacman -S hyprland kitty noto-fonts dolphin discord steam grim slurp pipewi
 
 mkdir -p ~/Downloads
 
-cd ~/Downloads
+cd ~/Downloads || exit
 git clone https://aur.archlinux.org/paru.git
 cd paru/
 makepkg -si
