@@ -11,9 +11,10 @@ cd ~/Downloads || exit
 git clone https://aur.archlinux.org/paru.git
 cd paru/
 makepkg -si
-cd ../
+cd ~
 paru -Syu zen-browser-bin zig
 
+cd ~/Downloads
 git clone https://codeberg.org/fairyglade/ly.git
 cd ly/
 zig build
