@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo pacman -Syu hyprland kitty noto-fonts dolphin discord steam grim slurp pipewire wireplumber quickshell xdg-desktop-portal-hyprland \
-wofi okular qt6-wayland nvim hyprpaper hyprlock code zsh
+wofi okular qt6-wayland nvim hyprpaper hyprlock code zsh uwsm 
 
 
 
