@@ -1,5 +1,16 @@
 #!/bin/bash
 
+if ! grep -q "^\[multilib\]" /etc/pacman.conf; then
+    read -p "Would you like to enable multilib? (y/n): " confirm
+    
+    if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
+        sudo sed -i '/^#\[multilib\]/,+1 s/^#//' /etc/pacman.conf
+        sudo pacman -Syu
+    else
+        echo "Skipping multilib. Steam installation may fail."
+    fi
+fi
+
 sudo pacman -Syu hyprland kitty noto-fonts dolphin discord steam grim slurp pipewire wireplumber quickshell xdg-desktop-portal-hyprland \
 wofi okular qt6-wayland nvim hyprpaper hyprlock code zsh uwsm 
 
