@@ -95,13 +95,14 @@ ln -sf ~/laptop-dotfiles/hypr ~/.config
 ln -sf ~/laptop-dotfiles/quickshell ~/.config
 
 
+if ! command -v zsh &> /dev/null; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    chsh -s zsh $(which zsh)
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-chsh -s zsh $(which zsh)
+    if [ -d ~/.zshrc ]; then
+        mv ~/.zshrc ~/.zshrc.bak
+    fi
 
-if [ -d ~/.zshrc ]; then
-    mv ~/.zshrc ~/.zshrc.bak
+    ln -sf ~/laptop-dotfiles/.zshrc ~
+    source ~/.zshrc
 fi
-
-ln -sf ~/laptop-dotfiles/.zshrc ~
-source ~/.zshrc
