@@ -88,7 +88,7 @@ mv ~/.config/hypr ~/.config/hypr.bak
 fi
 
 if [ -d ~/.config/quickshell ]; then
-mv ~/.config/hypr ~/.config/hypr.bak
+mv ~/.config/quickshell ~/.config/quickshell.bak
 fi
 
 ln -sf ~/laptop-dotfiles/hypr ~/.config
