@@ -61,7 +61,7 @@ if command -v paru &> /dev/null; then
 fi
 
         
-if [ "$AUR_INSTALLED" = true ]then
+if [ "$AUR_INSTALLED" = true ]; then
     cd ~/Downloads
     git clone https://codeberg.org/fairyglade/ly.git
     cd ly/
@@ -78,6 +78,7 @@ mkdir -p ~/.config
 if [ -d ~/.config/hypr]; then
 mv ~/.config/hypr ~/.config/hypr.bak
 fi
+
 if [-d ~/.config/quickshell]; then
 mv ~/.config/hypr ~/.config/hypr.bak
 fi
@@ -90,7 +91,7 @@ ln -sf ~/laptop-dotfiles/quickshell ~/.config
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 chsh -s zsh $(which zsh)
 
-if [ -d ~/.zshrc ] then
+if [ -d ~/.zshrc ]; then
     mv ~/.zshrc.bak
     ln -sf ~/laptop-dotfiles/.zshrc ~
     source /.zshrc
