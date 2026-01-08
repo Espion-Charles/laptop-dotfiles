@@ -11,33 +11,76 @@ if ! grep -q "^\[multilib\]" /etc/pacman.conf; then
     fi
 fi
 
-sudo pacman -Syu hyprland kitty noto-fonts dolphin discord steam grim slurp pipewire wireplumber quickshell xdg-desktop-portal-hyprland \
+sudo pacman -Syu hyprland kitty noto-fonts dolphin discord grim slurp pipewire wireplumber quickshell xdg-desktop-portal-hyprland \
 wofi okular qt6-wayland nvim hyprpaper hyprlock code zsh uwsm 
 
+if [-d ~/downloads]; then
+mv ~/downloads ~/Downloads
+if
 
-
+if [! -d ~/Downloads ]; then
 mkdir -p ~/Downloads
+fi
 
-cd ~/Downloads || exit
-git clone https://aur.archlinux.org/paru.git
-cd paru/
-makepkg -si
-cd ~
-paru -Syu zen-browser-bin zig
+AUR_INSTALLED=false
 
-cd ~/Downloads
-git clone https://codeberg.org/fairyglade/ly.git
-cd ly/
-zig build
-sudo zig build installexe -Dinit_system=systemd
-systemctl enable ly@tty2.service
+if command -v paru &> /dev/null; then
+    paru -Syu zen-browser-bin zig
+    AUR_INSTALLED=true
+    else
+    PS3='Choose one of these option (1-3):'
+    options=("I want paru" "I have yay already" "No")
+    
+    select opt in "${options[@]}"
+    do 
+        case $opt in
+        
+        "I want paru") 
+            cd ~/Downloads || exit
+            git clone https://aur.archlinux.org/paru.git
+            cd paru/
+            makepkg -si
+            cd ~
+            paru -Syu zen-browser-bin zig
+            AUR_INSTALLED=true
+            break
+            ;;
+        "I have yay already")
+            yay -Syu zen-browser-bin zig
+            AUR_INSTALLED=true
+            break
+            ;;
+        "No")
+            echo "wtf brother, why did you choose that, no ly for you"
+            AUR_INSTALLED=false
+            break
+            ;;
+        esac
+    done
 
+fi
 
-cd ~
+        
+if [ "$AUR_INSTALLED" = true ]then
+    cd ~/Downloads
+    git clone https://codeberg.org/fairyglade/ly.git
+    cd ly/
+    zig build
+    sudo zig build installexe -Dinit_system=systemd
+    systemctl enable ly@tty2.service
+    cd ~
+fi
 
 
 
 mkdir -p ~/.config
+
+if [ -d ~/.config/hypr]; then
+mv ~/.config/hypr ~/.config/hypr.bak
+fi
+if [-d ~/.config/quickshell]; then
+mv ~/.config/hypr ~/.config/hypr.bak
+fi
 
 ln -s ~/laptop-dotfiles/hypr ~/.config
 ln -s ~/laptop-dotfiles~/quickshell ~/.config
