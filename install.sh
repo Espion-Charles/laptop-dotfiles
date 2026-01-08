@@ -16,7 +16,7 @@ wofi okular qt6-wayland nvim hyprpaper hyprlock code zsh uwsm
 
 if [-d ~/downloads]; then
 mv ~/downloads ~/Downloads
-if
+fi
 
 if [! -d ~/Downloads ]; then
 mkdir -p ~/Downloads
