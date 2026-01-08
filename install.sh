@@ -83,11 +83,11 @@ fi
 
 mkdir -p ~/.config
 
-if [ -d ~/.config/hypr]; then
+if [ -d ~/.config/hypr ]; then
 mv ~/.config/hypr ~/.config/hypr.bak
 fi
 
-if [-d ~/.config/quickshell]; then
+if [ -d ~/.config/quickshell ]; then
 mv ~/.config/hypr ~/.config/hypr.bak
 fi
 
@@ -98,11 +98,10 @@ ln -sf ~/laptop-dotfiles/quickshell ~/.config
 if ! command -v zsh &> /dev/null; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     chsh -s zsh $(which zsh)
-
-    if [ -d ~/.zshrc ]; then
-        mv ~/.zshrc ~/.zshrc.bak
-    fi
-
-    ln -sf ~/laptop-dotfiles/.zshrc ~
-    source ~/.zshrc
 fi
+if [ -d ~/.zshrc ]; then
+    mv ~/.zshrc ~/.zshrc.bak
+fi
+
+ln -sf ~/laptop-dotfiles/.zshrc ~
+source ~/.zshrc
