@@ -61,7 +61,7 @@ if command -v paru &> /dev/null; then
 fi
 
         
-if [ "$AUR_INSTALLED" = true ]; then
+if [ "$AUR_INSTALLED" = true ] || command -v ly &> /dev/null; then
     cd ~/Downloads
     git clone https://codeberg.org/fairyglade/ly.git
     cd ly/
