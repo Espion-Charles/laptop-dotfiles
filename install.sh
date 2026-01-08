@@ -18,7 +18,7 @@ if [-d ~/downloads]; then
 mv ~/downloads ~/Downloads
 fi
 
-if [! -d ~/Downloads ]; then
+if [ ! -d ~/Downloads ]; then
 mkdir -p ~/Downloads
 fi
 
