@@ -20,6 +20,7 @@ fi
 
 if [ ! -d ~/Downloads ]; then
 mkdir -p ~/Downloads
+echo "~/Downloads folder created"
 fi
 
 AUR_INSTALLED=false
