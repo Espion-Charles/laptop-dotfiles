@@ -82,13 +82,16 @@ if [-d ~/.config/quickshell]; then
 mv ~/.config/hypr ~/.config/hypr.bak
 fi
 
-ln -s ~/laptop-dotfiles/hypr ~/.config
-ln -s ~/laptop-dotfiles~/quickshell ~/.config
+ln -sf ~/laptop-dotfiles/hypr ~/.config
+ln -sf ~/laptop-dotfiles/quickshell ~/.config
 
 
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-ln -sf ~/laptop-dotfiles/.zshrc ~
-source /.zshrc
 chsh -s zsh $(which zsh)
+
+if [ -d ~/.zshrc ] then
+    mv ~/.zshrc.bak
+    ln -sf ~/laptop-dotfiles/.zshrc ~
+    source /.zshrc
+fi
