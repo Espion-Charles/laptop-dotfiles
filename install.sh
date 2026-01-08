@@ -38,15 +38,20 @@ if command -v paru &> /dev/null; then
         
         "I want paru") 
             cd ~/Downloads || exit
+            echo "Cloning paru"
             git clone https://aur.archlinux.org/paru.git
             cd paru/
+            echo "Creating paru"
             makepkg -si
+            echo "paru created"
             cd ~
+            echo "Installing important stuff"
             paru -Syu zen-browser-bin zig
             AUR_INSTALLED=true
             break
             ;;
         "I have yay already")
+            echo "Installing important stuff"
             yay -Syu zen-browser-bin zig
             AUR_INSTALLED=true
             break
@@ -62,10 +67,12 @@ if command -v paru &> /dev/null; then
 fi
 
         
-if [ "$AUR_INSTALLED" = true ] || ! command -v ly &> /dev/null; then
+if [ "$AUR_INSTALLED" = true ] && ! command -v ly &> /dev/null; then
     cd ~/Downloads
+    echo "Cloning ly"
     git clone https://codeberg.org/fairyglade/ly.git
     cd ly/
+    echo "building LY"
     zig build
     sudo zig build installexe -Dinit_system=systemd
     systemctl enable ly@tty2.service
@@ -93,7 +100,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 chsh -s zsh $(which zsh)
 
 if [ -d ~/.zshrc ]; then
-    mv ~/.zshrc.bak
+    mv ~/.zshrc ~/.zshrc.bak
     ln -sf ~/laptop-dotfiles/.zshrc ~
     source /.zshrc
 fi
