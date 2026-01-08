@@ -101,6 +101,7 @@ chsh -s zsh $(which zsh)
 
 if [ -d ~/.zshrc ]; then
     mv ~/.zshrc ~/.zshrc.bak
-    ln -sf ~/laptop-dotfiles/.zshrc ~
-    source /.zshrc
 fi
+
+ln -sf ~/laptop-dotfiles/.zshrc ~
+source /.zshrc
