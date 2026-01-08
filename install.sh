@@ -104,4 +104,4 @@ if [ -d ~/.zshrc ]; then
 fi
 
 ln -sf ~/laptop-dotfiles/.zshrc ~
-source /.zshrc
+source ~/.zshrc
