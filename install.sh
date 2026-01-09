@@ -1,26 +1,20 @@
 #!/bin/bash
 
 if ! grep -q "^\[multilib\]" /etc/pacman.conf; then
-    read -p "Would you like to enable multilib? (y/n): " confirm
-    
-    if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
-        sudo sed -i '/^#\[multilib\]/,+1 s/^#//' /etc/pacman.conf
-        sudo pacman -Syu
-    else
-        echo "Skipping multilib. Steam installation may fail."
-    fi
+    sudo sed -i '/^#\[multilib\]/,+1 s/^#//' /etc/pacman.conf
+    sudo pacman -Syu
 fi
 
 sudo pacman -Syu hyprland kitty noto-fonts dolphin discord grim slurp pipewire wireplumber quickshell xdg-desktop-portal-hyprland \
 wofi okular qt6-wayland nvim hyprpaper hyprlock code zsh uwsm 
 
 if [-d ~/downloads]; then
-mv ~/downloads ~/Downloads
+    mv ~/downloads ~/Downloads
 fi
 
 if [ ! -d ~/Downloads ]; then
-mkdir -p ~/Downloads
-echo "~/Downloads folder created"
+    mkdir -p ~/Downloads
+    echo "~/Downloads folder created"
 fi
 
 AUR_INSTALLED=false
@@ -80,15 +74,16 @@ if [ "$AUR_INSTALLED" = true ] && ! command -v ly &> /dev/null; then
 fi
 
 
-
-mkdir -p ~/.config
+if [ ! -d ~/.config ]; then
+    mkdir -p ~/.config
+fi
 
 if [ -d ~/.config/hypr ]; then
-mv ~/.config/hypr ~/.config/hypr.bak
+    mv ~/.config/hypr ~/.config/hypr.bak
 fi
 
 if [ -d ~/.config/quickshell ]; then
-mv ~/.config/quickshell ~/.config/quickshell.bak
+    mv ~/.config/quickshell ~/.config/quickshell.bak
 fi
 
 ln -sf ~/laptop-dotfiles/hypr ~/.config
