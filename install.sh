@@ -75,19 +75,26 @@ fi
 
 
 if [ ! -d ~/.config ]; then
+    echo "Creating a config directory"
     mkdir -p ~/.config
+    echo "Config directory created"
 fi
 
 if [ -d ~/.config/hypr ]; then
+    echo "Backing up old hypr directory"
     mv ~/.config/hypr ~/.config/hypr.bak
+    echo "Old hypr folder backed up"
 fi
 
 if [ -d ~/.config/quickshell ]; then
+    echo "Backing up old quickshell directory"
     mv ~/.config/quickshell ~/.config/quickshell.bak
 fi
 
+echo "Creating symlinks for the hypr and quickshell configs"
 ln -sf ~/laptop-dotfiles/hypr ~/.config
 ln -sf ~/laptop-dotfiles/quickshell ~/.config
+echo "Symlinks created"
 
 
 if [ ! -d "$~/.oh-my-zsh" ]; then
