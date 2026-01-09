@@ -1,7 +1,9 @@
 #!/bin/bash
 
 if ! grep -q "^\[multilib\]" /etc/pacman.conf; then
+    echo "Adding multilib"
     sudo sed -i '/^#\[multilib\]/,+1 s/^#//' /etc/pacman.conf
+    echo "Multilib added"
     sudo pacman -Syu
 fi
 
