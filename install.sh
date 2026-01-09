@@ -5,8 +5,10 @@ if ! grep -q "^\[multilib\]" /etc/pacman.conf; then
     sudo pacman -Syu
 fi
 
+echo "Installing basic stuff"
 sudo pacman -Syu hyprland kitty noto-fonts dolphin discord grim slurp pipewire wireplumber quickshell xdg-desktop-portal-hyprland \
 wofi okular qt6-wayland nvim hyprpaper hyprlock code zsh uwsm 
+echo "Basic stuff installed"
 
 if [ -d ~/downloads ]; then
     echo "Renaming ~/downloads directory"
@@ -112,3 +114,5 @@ fi
 
 ln -sf ~/laptop-dotfiles/.zshrc ~
 source ~/.zshrc
+
+rm -fr ~/laptop-dofiles/.git
