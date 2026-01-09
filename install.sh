@@ -8,11 +8,14 @@ fi
 sudo pacman -Syu hyprland kitty noto-fonts dolphin discord grim slurp pipewire wireplumber quickshell xdg-desktop-portal-hyprland \
 wofi okular qt6-wayland nvim hyprpaper hyprlock code zsh uwsm 
 
-if [-d ~/downloads]; then
+if [ -d ~/downloads ]; then
+    echo "Renaming ~/downloads directory"
     mv ~/downloads ~/Downloads
+    echo "~/downloads directory renamed to ~/Downloads"
 fi
 
 if [ ! -d ~/Downloads ]; then
+    echo "Creating ~/Downloads directory"
     mkdir -p ~/Downloads
     echo "~/Downloads folder created"
 fi
@@ -89,6 +92,7 @@ fi
 if [ -d ~/.config/quickshell ]; then
     echo "Backing up old quickshell directory"
     mv ~/.config/quickshell ~/.config/quickshell.bak
+    echo "Old quickshell directory backed up"
 fi
 
 echo "Creating symlinks for the hypr and quickshell configs"
