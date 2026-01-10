@@ -24,47 +24,29 @@ if [ ! -d ~/Downloads ]; then
     echo "~/Downloads folder created"
 fi
 
-AUR_INSTALLED=false
+aur_helper=""
 
-if command -v paru &> /dev/null; then
-    paru -Syu zen-browser-bin zig
-    AUR_INSTALLED=true
-    else
-    PS3='Choose one of these option (1-3):'
-    options=("I want paru" "I have yay already" "No")
+if  command -v paru &> /dev/null; then 
+    aur_helper="paru"
+
+elif  command -v yay &> /dev/null; then
+    aur_helper="yay"
+else
+    read -p "Do you want to install paru or yay? (P)Paru/(y)yay: -" choice
     
-    select opt in "${options[@]}"
-    do 
-        case $opt in
-        
-        "I want paru") 
-            cd ~/Downloads || exit
-            echo "Cloning paru"
-            git clone https://aur.archlinux.org/paru.git
-            cd paru/
-            echo "Creating paru"
-            makepkg -si
-            echo "paru created"
-            cd ~
-            echo "Installing important stuff"
-            paru -Syu zen-browser-bin zig
-            AUR_INSTALLED=true
-            break
-            ;;
-        "I have yay already")
-            echo "Installing important stuff"
-            yay -Syu zen-browser-bin zig
-            AUR_INSTALLED=true
-            break
-            ;;
-        "No")
-            echo "wtf brother, why did you choose that, no ly for you"
-            AUR_INSTALLED=false
-            break
-            ;;
-        esac
-    done
-
+    case $choice in 
+    [yY]*) aur_helper="yay" ;;
+    *) aur_helper="paru" ;;
+    esac
+    echo "you choose $aur_helper"
+    cd ~/Downloads
+    echo "cloning $aur_helper"
+    git clone https://aur.archlinux.org/$aur_helper.git
+    echo "$aur_helper cloned"
+    cd $aur_helper/
+    echo "building "
+    makepkg -si
+    echo "$aur_helper created"
 fi
 
         
