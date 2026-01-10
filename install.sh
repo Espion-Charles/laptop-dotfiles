@@ -44,13 +44,26 @@ else
     git clone https://aur.archlinux.org/$aur_helper.git
     echo "$aur_helper cloned"
     cd $aur_helper/
-    echo "building "
+    echo "building $aur_helper"
     makepkg -si
     echo "$aur_helper created"
 fi
 
+echo "Installing important packages on the aur"
+$aur_helper -Syu zen-browser-bin 
+echo "Packages were properly installed"
         
-if [ "$AUR_INSTALLED" = true ] && ! command -v ly &> /dev/null; then
+if ! command -v ly &> /dev/null; then
+    if ls /usr/bin/gdm &> /dev/null; then
+        systemctl stop gdm3.service
+        systemctl disable dm3.service
+    elif ls /usr/bin/sddm &> /dev/null; then
+        systemctl stop sddm.service
+        systemctl disable sddm.service
+    elif ls /usr/bin/lightdm &> /dev/null; then
+        systemctl stop lightdm.service
+        systemctl disable lightdm.service
+    fi
     cd ~/Downloads
     echo "Cloning ly"
     git clone https://codeberg.org/fairyglade/ly.git
