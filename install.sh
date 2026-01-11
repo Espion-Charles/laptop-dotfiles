@@ -55,14 +55,20 @@ echo "Packages were properly installed"
         
 if ! command -v ly &> /dev/null; then
     if ls /usr/bin/gdm &> /dev/null; then
+        echo "deactivating gdm"
         systemctl stop gdm3.service
         systemctl disable dm3.service
+        echo "gdm deactivated"
     elif ls /usr/bin/sddm &> /dev/null; then
+        echo "deactivating sddm"
         systemctl stop sddm.service
         systemctl disable sddm.service
+        echo "sddm deactivated"
     elif ls /usr/bin/lightdm &> /dev/null; then
+        echo "deactivating lightdm"
         systemctl stop lightdm.service
         systemctl disable lightdm.service
+        echo "lightdm deactivated"
     fi
     cd ~/Downloads
     echo "Cloning ly"
