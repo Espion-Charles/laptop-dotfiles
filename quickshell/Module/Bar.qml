@@ -21,10 +21,13 @@ Scope {
                 right: true
             }
             implicitHeight: 30
-
+            color: "transparent"
+            
             ClockWidget {
                 anchors.centerIn: parent
+                color: "white"
             }
+            
         }
     }
 }
