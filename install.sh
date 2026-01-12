@@ -50,7 +50,7 @@ else
 fi
 
 echo "Installing important packages on the aur"
-$aur_helper -Syu zen-browser-bin 
+$aur_helper -Syu zen-browser-bin zig
 echo "Packages were properly installed"
         
 if ! command -v ly &> /dev/null; then
