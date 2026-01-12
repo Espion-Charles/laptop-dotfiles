@@ -3,32 +3,28 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
 import QtQuick.Layouts
+import "./Widgets"
 
-PanelWindow {
-    id: bar
-    
-    color: "black"
-    anchors {
-        left: true
-        top: true
-        right: true
-    }
+Scope {
+    id: root
 
-    implicitHeight: 30
+    Variants {
+        model: Quickshell.screens
 
-    SystemClock {
-    id: clock
-    precision: SystemClock.Seconds
+        PanelWindow {
+            required property var modelData
+            screen: modelData
+            
+            anchors {
+                top: true
+                left: true
+                right: true
+            }
+            implicitHeight: 30
 
-    }
-
-    Rectangle {
-        Text {
-            text: Qt.formatDateTime(clock.date, "hh:mm:ss - yyyy-MM-dd")
-            color: "white"
-
+            ClockWidget {
+                anchors.centerIn: parent
+            }
         }
-
-        x: 900
     }
 }
