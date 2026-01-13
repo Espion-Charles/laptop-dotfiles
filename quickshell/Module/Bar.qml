@@ -23,11 +23,16 @@ Scope {
             implicitHeight: 30
             color: "transparent"
             
-            ClockWidget {
+            Rectangle {
+                implicitHeight: 30
+                implicitWidth: 120
+                color: "black"
                 anchors.centerIn: parent
-                color: "white"
+                    ClockWidget {
+                    anchors.centerIn: parent
+                    color: "white"
+                }
             }
-            
         }
     }
 }
