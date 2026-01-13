@@ -31,7 +31,7 @@ Scope {
                 anchors.left: parent.left
                 anchors.leftMargin: 200
                 Text {
-                    text: "workspaces soon"
+                    text: "HyprlandWorkspaces"
                     color: "white"
                 }
             }
