@@ -27,6 +27,7 @@ Scope {
                 implicitHeight: 30
                 implicitWidth: 120
                 color: "black"
+                radius: 10
                 anchors.centerIn: parent
                     ClockWidget {
                     anchors.centerIn: parent
