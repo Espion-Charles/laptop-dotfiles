@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 alias pas="paru -S"
 alias par="paru -Rns"
 alias pary="paru -Syu"
+alias paq="paru -Q"
 alias sd="sudo"
 alias nv="nvim"
 alias hypr="nvim ~/.config/hypr/hyprland.conf"
