@@ -122,4 +122,4 @@ alias ff="fastfetch"
 alias gpu="~/laptop-dotfiles/hypr/gpu/gpu-switch.sh"
 alias kl="kill"
 alias sk="sudo kill"
-alias sdt="sudo $(fc -ln -1)"
+
